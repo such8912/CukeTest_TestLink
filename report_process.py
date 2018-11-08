@@ -70,9 +70,9 @@ class CukeTest:
                     case_result = "f"
                     break
 
-                # 遍历结束后，判断case_result的状态，如果不为f，那么就将case_result写为p
-                if case_result != "f":
-                    case_result = "p"
+            # 遍历结束后，判断case_result的状态，如果不为f，那么就将case_result写为p
+            if case_result != "f":
+                case_result = "p"
 
             print "测试用例的结果为：", case_result
 
