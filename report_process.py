@@ -57,11 +57,11 @@ class CukeTest:
 
             # 获取每个测试用例的id
             case_id = rs_dict['elements'][case]['name'].split(':', 1)[0];
-            print "第%d个测试用例ID为%s:" % (case, case_id)
+            print "第%d个测试用例ID为%s:" % (case+1, case_id)
 
             # 获取每个测试用例的步数
-            steps = len(rs_dict['elements'][0]['steps'])
-            print "第%d个测试用例共有%d步" % (case, steps - 2)
+            steps = len(rs_dict['elements'][case]['steps'])
+            print "第%d个测试用例共有%d步" % (case+1, steps - 2)
 
             # 遍历每个测试用例每一步的结果
             for i in range(1, steps - 1):
