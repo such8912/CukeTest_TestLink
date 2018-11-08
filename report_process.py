@@ -6,7 +6,6 @@
 @desc:解析Report结果文件JSON类
 """
 
-# class CukeTest_Json:
 import json
 import os
 import sys
@@ -23,7 +22,6 @@ list_testLink = []
 class CukeTest:
     def __init__(self):
         self.reports_path = os.path.join(os.path.dirname(os.getcwd()), "reports\\")
-        print self.reports_path
 
     # 获取JSON文件路径
     def getJsonFile(self):
@@ -42,12 +40,11 @@ class CukeTest:
 
     # 解析读到的JSON文件内容里的一个场景
     def parseJson(self, rs_dict):
-        dict_testLink = {}  # 发给TestLink数据里最外层的字典
+        dict_scenario = {}  # 发给TestLink数据里最外层的字典
         case_dict = {"data": []}  # 每个用例的数据
 
-        # rs_dict = list_load  # 剥离CukeTest的功能项(目前解析脚本只针对一个测试功能设计)
-        # 给dict_testLink添加测试计划名称
-        dict_testLink['planname'] = rs_dict['description']
+        # 给dict_scenario添加测试计划名称
+        dict_scenario['planname'] = rs_dict['description']
         print "测试计划名称：", rs_dict['description']
         # 获取测试用例个数
         cases_count = len(rs_dict['elements'])
@@ -57,7 +54,6 @@ class CukeTest:
         for case in range(cases_count):
             # 每个测试用例的最终结果
             case_result = ""
-            print "case_result:", case_result
 
             # 获取每个测试用例的id
             case_id = rs_dict['elements'][case]['name'].split(':', 1)[0];
@@ -83,8 +79,8 @@ class CukeTest:
             # 组装每个测试用例的数据
             case_dict["data"].append({"caseid": case_id, "result": case_result, "message": ""})
 
-            dict_testLink["data"] = case_dict["data"]
-        return dict_testLink
+            dict_scenario["data"] = case_dict["data"]
+        return dict_scenario
 
 
 if __name__ == '__main__':
